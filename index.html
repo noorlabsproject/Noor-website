@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noor Labs — Halal. Honest. Performance.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #B8943F;
+      --gold-light: #D4AF6A;
+      --black: #0D0D0D;
+      --white: #FAFAF8;
+      --grey: #6B6B6B;
+      --grey-light: #E8E8E4;
+      color-scheme: light only;
+    }
+
+    html { scroll-behavior: smooth; color-scheme: light only; }
+
+    body {
+      background: #FAFAF8 !important;
+      color: #0D0D0D !important;
+      font-family: 'DM Mono', monospace;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      html, body { background: #FAFAF8 !important; color: #0D0D0D !important; }
+      nav { background: rgba(250,250,248,0.95) !important; color: #0D0D0D !important; }
+      .hero { background: #FAFAF8 !important; color: #0D0D0D !important; }
+      .hero-heading { color: #0D0D0D !important; }
+      .hero-sub { color: #6B6B6B !important; }
+      .brand-statement { background: #FAFAF8 !important; color: #0D0D0D !important; }
+      .pillars { background: #FAFAF8 !important; color: #0D0D0D !important; }
+      .products { background: #FAFAF8 !important; color: #0D0D0D !important; }
+      .waitlist-form input { background: #FAFAF8 !important; color: #0D0D0D !important; }
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(250, 250, 248, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--grey-light);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--gold);
+    }
+
+    .nav-tag {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 140px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(135deg, transparent 40%, rgba(184,148,63,0.04) 100%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.2s;
+    }
+
+    .hero-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 8vw, 110px);
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+      max-width: 900px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.4s;
+    }
+
+    .hero-heading em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-underline {
+      display: block;
+      width: 80px;
+      height: 1px;
+      background: var(--gold);
+      margin: 40px 0;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.6s;
+    }
+
+    .hero-sub {
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      line-height: 1.8;
+      color: var(--grey);
+      max-width: 480px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.7s;
+    }
+
+    /* WAITLIST FORM */
+    .waitlist {
+      margin-top: 52px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.9s;
+    }
+
+    .waitlist-label {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .waitlist-form {
+      display: flex;
+      gap: 0;
+      max-width: 480px;
+      border: 1px solid var(--black);
+    }
+
+    .waitlist-form input {
+      flex: 1;
+      padding: 16px 20px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      border: none;
+      background: transparent;
+      color: var(--black);
+      outline: none;
+    }
+
+    .waitlist-form input::placeholder {
+      color: var(--grey);
+    }
+
+    .waitlist-form button {
+      padding: 16px 28px;
+      background: var(--black);
+      color: var(--white);
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .waitlist-form button:hover {
+      background: var(--gold);
+    }
+
+    .waitlist-note {
+      font-size: 10px;
+      color: var(--grey);
+      letter-spacing: 0.08em;
+      margin-top: 12px;
+    }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: var(--grey-light);
+      margin: 0 48px;
+    }
+
+    /* BRAND STATEMENT */
+    .brand-statement {
+      padding: 120px 48px;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding-top: 8px;
+    }
+
+    .brand-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 300;
+      line-height: 1.45;
+      letter-spacing: 0.01em;
+    }
+
+    .brand-text strong {
+      font-weight: 600;
+    }
+
+    /* PRODUCTS */
+    .products {
+      padding: 80px 48px 120px;
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .products-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 60px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--grey-light);
+    }
+
+    .products-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 300;
+      letter-spacing: -0.01em;
+    }
+
+    .products-heading em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .products-status {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .product-card {
+      padding: 52px 40px;
+      border: 1px solid var(--grey-light);
+      transition: border-color 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .product-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .product-card:hover {
+      border-color: rgba(184,148,63,0.4);
+    }
+
+    .product-number {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 32px;
+    }
+
+    .product-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(24px, 3vw, 38px);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: var(--black);
+    }
+
+    .product-desc {
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      line-height: 1.9;
+      color: var(--grey);
+      max-width: 320px;
+    }
+
+    .product-flavours {
+      margin-top: 32px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .flavour-tag {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border: 1px solid rgba(184,148,63,0.5);
+      color: var(--gold);
+    }
+
+    /* PILLARS */
+    .pillars {
+      padding: 120px 48px;
+    }
+
+    .pillars-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 300;
+      margin-bottom: 80px;
+      max-width: 600px;
+      line-height: 1.2;
+    }
+
+    .pillars-heading span {
+      display: block;
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin-bottom: 32px;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .pillar {
+      padding: 48px 40px;
+      border-top: 2px solid var(--black);
+    }
+
+    .pillar-number {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .pillar-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .pillar-desc {
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      line-height: 1.9;
+      color: var(--grey);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 60px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: end;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+    }
+
+    .footer-logo span { color: var(--gold-light); }
+
+    .footer-address {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      line-height: 2;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 24px;
+      justify-content: flex-end;
+      margin-bottom: 24px;
+    }
+
+    .footer-social a {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-social a:hover { color: var(--white); }
+
+    .footer-copy {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* SUCCESS STATE */
+    .waitlist-success {
+      display: none;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      padding: 16px 0;
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      .hero { padding: 120px 24px 60px; }
+      .divider { margin: 0 24px; }
+      .brand-statement { padding: 80px 24px; grid-template-columns: 1fr; gap: 24px; }
+      .products { padding: 60px 24px 80px; }
+      .products-grid { grid-template-columns: 1fr; }
+      .product-card { padding: 40px 24px; }
+      .pillars { padding: 80px 24px; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .pillar { padding: 36px 0; }
+      footer { padding: 48px 24px; grid-template-columns: 1fr; }
+      .footer-right { text-align: left; }
+      .footer-social { justify-content: flex-start; }
+      .waitlist-form { flex-direction: column; border: none; gap: 0; }
+      .waitlist-form input { border: 1px solid var(--black); padding: 14px 16px; }
+      .waitlist-form button { padding: 14px 20px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Noor <span>Labs</span></a>
+    <span class="nav-tag">Halal. Honest. Performance.</span>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">Noor Labs Nutrition — Burnaby, BC</p>
+    <h1 class="hero-heading">
+      The first halal certified<br /><em>sports performance</em><br />gummy brand<br />
+    </h1>
+    <span class="hero-underline"></span>
+    <p class="hero-sub">
+      Built for Muslim athletes who deserve supplements they can trust. Halal certified. Third party tested every batch. No compromises.
+    </p>
+
+    <div class="waitlist">
+      <span class="waitlist-label">Join the Waitlist</span>
+      <form
+        class="waitlist-form"
+        id="waitlistForm"
+        action="https://us14.list-manage.com/subscribe/post?u=00473419a441a525fd8985aa9&id=e2c25007fa"
+        method="post"
+        target="_blank"
+        onsubmit="return handleSubmit(event)"
+      >
+        <input type="email" id="emailInput" name="EMAIL" placeholder="your@email.com" required />
+        <button type="submit">Notify Me</button>
+      </form>
+      <p class="waitlist-note">Be first to know when we launch. No spam, ever.</p>
+      <p class="waitlist-success" id="successMsg">You're on the list. We'll be in touch.</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- BRAND STATEMENT -->
+  <section class="brand-statement">
+    <p class="section-label">Our Mission</p>
+    <p class="brand-text">
+      The halal supplement market has been left behind. <strong>Noor Labs exists to change that</strong> — starting with sports performance, built on transparency, and verified every single batch.
+    </p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PRODUCTS -->
+  <section class="products">
+    <div class="products-header">
+      <h2 class="products-heading">Coming <em>Soon</em></h2>
+      <span class="products-status">Launching 2026</span>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <p class="product-number">01 —</p>
+        <h3 class="product-name">Something<br /><em style="font-style:italic; color:var(--gold);">new</em> is coming.</h3>
+        <p class="product-desc">The halal sports performance supplement you've been waiting for. Halal certified. Third party tested every batch. Join the waitlist to be first to know.</p>
+        <div class="product-flavours">
+          <span class="flavour-tag">Launching 2026</span>
+        </div>
+      </div>
+      <div class="product-card">
+        <p class="product-number">02 —</p>
+        <h3 class="product-name">Two products.<br /><em style="font-style:italic; color:var(--gold);">Zero compromises.</em></h3>
+        <p class="product-desc">Built for Muslim athletes who refuse to choose between their deen and their performance. No shortcuts. No secrets. Just results you can verify yourself.</p>
+        <div class="product-flavours">
+          <span class="flavour-tag">Waitlist Only</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILLARS -->
+  <section class="pillars">
+    <div class="pillars-heading">
+      <span></span>
+      Why Noor Labs is different.
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar">
+        <p class="pillar-number">01 —</p>
+        <h3 class="pillar-title">Halal Certified</h3>
+        <p class="pillar-desc">Not halal suitable. Not halal friendly. Certified. Every product, every batch, every time. We hold ourselves to the standard that matters.</p>
+      </div>
+      <div class="pillar">
+        <p class="pillar-number">02 —</p>
+        <h3 class="pillar-title">Third Party Tested</h3>
+        <p class="pillar-desc">Every batch tested by an independent lab. Scan the QR code on your pouch and see the results yourself. What's on the label is in the product.</p>
+      </div>
+      <div class="pillar">
+        <p class="pillar-number">03 —</p>
+        <h3 class="pillar-title">QR Verified Transparency</h3>
+        <p class="pillar-desc">Every pouch has a QR code linking directly to live lab results. No secrets. No shortcuts. Just proof you can verify yourself.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <p class="footer-logo">Noor <span>Labs</span></p>
+      <p class="footer-address">
+        Noor Labs Nutrition Inc.<br />
+        Burnaby, British Columbia, Canada<br />
+        <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="80cce1f5f2f9eec0eeefeff2ece1e2eff2e1f4eff2f9aee3e1">[email&#160;protected]</a>
+      </p>
+    </div>
+    <div class="footer-right">
+      <div class="footer-social">
+        <a href="https://www.tiktok.com/@coachnoor.ai" target="_blank">TikTok</a>
+        <a href="https://www.instagram.com/coachnoor.ai" target="_blank">Instagram</a>
+      </div>
+      <p class="footer-copy">© 2026 Noor Labs Nutrition Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script>
+    function handleSubmit(event) {
+      const emailInput = document.getElementById('emailInput');
+      const email = emailInput.value.trim();
+
+      if (!email || !email.includes('@')) {
+        event.preventDefault();
+        emailInput.style.borderColor = '#B8943F';
+        emailInput.focus();
+        return false;
+      }
+
+      emailInput.style.borderColor = 'transparent';
+      return true;
+    }
+  </script>
+</body>
+</html>
