@@ -1,0 +1,167 @@
+:root {
+  --black: #050505;
+  --gold: #c5a246;
+  --gold-soft: #9f8036;
+  --gold-bright: #e1c676;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Playfair Display", Georgia, serif;
+  background: var(--black);
+  color: var(--gold);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-header,
+.site-footer,
+main {
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+}
+
+.site-header {
+  padding: 2rem 0 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--gold-soft);
+}
+
+.wordmark {
+  letter-spacing: 0.28em;
+  font-weight: 600;
+}
+
+.hero {
+  padding: 5.5rem 0 4rem;
+  border-bottom: 1px solid var(--gold-soft);
+}
+
+.kicker {
+  margin: 0;
+  letter-spacing: 0.24em;
+  font-size: 0.85rem;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(2.3rem, 4vw, 3.8rem);
+  margin-bottom: 1.1rem;
+  max-width: 14ch;
+}
+
+.lead {
+  max-width: 65ch;
+  margin-bottom: 2rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.button {
+  display: inline-block;
+  border: 1px solid var(--gold);
+  color: var(--black);
+  background: var(--gold);
+  padding: 0.72rem 1.3rem;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+  transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  background: var(--gold-bright);
+  border-color: var(--gold-bright);
+}
+
+.button-outline {
+  background: transparent;
+  color: var(--gold);
+}
+
+.button-outline:hover,
+.button-outline:focus-visible {
+  background: var(--gold-soft);
+  color: var(--black);
+  border-color: var(--gold-soft);
+}
+
+.products,
+.why {
+  padding: 3.2rem 0;
+}
+
+.product-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.card {
+  border: 1px solid var(--gold-soft);
+  padding: 1.25rem;
+  background: #080808;
+}
+
+.card p,
+.why p {
+  margin: 0;
+}
+
+.site-footer {
+  border-top: 1px solid var(--gold-soft);
+  margin-top: 1.5rem;
+  padding: 1.75rem 0 2.4rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.site-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 720px) {
+  .site-header,
+  .site-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero {
+    padding-top: 4rem;
+  }
+}
