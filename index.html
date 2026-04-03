@@ -199,13 +199,6 @@
       margin-top: 12px;
     }
 
-    /* DIVIDER */
-    .divider {
-      height: 1px;
-      background: var(--grey-light);
-      margin: 0 48px;
-    }
-
     /* BRAND STATEMENT */
     .brand-statement {
       padding: 120px 48px;
@@ -263,13 +256,6 @@
       color: var(--gold);
     }
 
-    .products-status {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
     .products-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -280,23 +266,6 @@
       padding: 52px 40px;
       border: 1px solid var(--grey-light);
       transition: border-color 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .product-card::before {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--gold);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
-    }
-
-    .product-card:hover::before {
-      transform: scaleX(1);
     }
 
     .product-card:hover {
@@ -317,14 +286,6 @@
       line-height: 1.2;
       margin-bottom: 20px;
       color: var(--black);
-    }
-
-    .product-desc {
-      font-size: 11px;
-      letter-spacing: 0.05em;
-      line-height: 1.9;
-      color: var(--grey);
-      max-width: 320px;
     }
 
     .product-flavours {
@@ -355,14 +316,6 @@
       margin-bottom: 80px;
       max-width: 600px;
       line-height: 1.2;
-    }
-
-    .pillars-heading span {
-      display: block;
-      width: 60px;
-      height: 1px;
-      background: var(--gold);
-      margin-bottom: 32px;
     }
 
     .pillars-grid {
@@ -482,7 +435,6 @@
     @media (max-width: 768px) {
       nav { padding: 20px 24px; }
       .hero { padding: 120px 24px 60px; }
-      .divider { margin: 0 24px; }
       .brand-statement { padding: 80px 24px; grid-template-columns: 1fr; gap: 24px; }
       .products { padding: 60px 24px 80px; }
       .products-grid { grid-template-columns: 1fr; }
@@ -514,7 +466,7 @@
     </h1>
     <span class="hero-underline"></span>
     <p class="hero-sub">
-      Built for Muslim athletes who deserve supplements they can trust. Halal certified. Third party tested every batch. No compromises.
+      Built for Muslim athletes who deserve supplements they can trust. Halal certified. No compromises.
     </p>
 
     <div class="waitlist">
@@ -524,18 +476,15 @@
         id="waitlistForm"
         action="https://us14.list-manage.com/subscribe/post?u=00473419a441a525fd8985aa9&id=e2c25007fa"
         method="post"
-        target="_blank"
         onsubmit="return handleSubmit(event)"
       >
         <input type="email" id="emailInput" name="EMAIL" placeholder="your@email.com" required />
         <button type="submit">Notify Me</button>
       </form>
       <p class="waitlist-note">Be first to know when we launch. No spam, ever.</p>
-      <p class="waitlist-success" id="successMsg">You're on the list. We'll be in touch.</p>
+      <p class="waitlist-success" id="successMsg">You're on the list. 🖤</p>
     </div>
   </section>
-
-  <div class="divider"></div>
 
   <!-- BRAND STATEMENT -->
   <section class="brand-statement">
@@ -545,29 +494,24 @@
     </p>
   </section>
 
-  <div class="divider"></div>
-
   <!-- PRODUCTS -->
   <section class="products">
     <div class="products-header">
-      <h2 class="products-heading">Coming <em>Soon</em></h2>
-      <span class="products-status">Launching 2026</span>
+      <h2 class="products-heading">Coming <em>2026</em>.</h2>
     </div>
     <div class="products-grid">
       <div class="product-card">
         <p class="product-number">01 —</p>
-        <h3 class="product-name">Something<br /><em style="font-style:italic; color:var(--gold);">new</em> is coming.</h3>
-        <p class="product-desc">The halal sports performance supplement you've been waiting for. Halal certified. Third party tested every batch. Join the waitlist to be first to know.</p>
+        <h3 class="product-name">Something <em style="font-style:italic; color:var(--gold);">new</em> is coming.</h3>
         <div class="product-flavours">
           <span class="flavour-tag">Launching 2026</span>
         </div>
       </div>
       <div class="product-card">
         <p class="product-number">02 —</p>
-        <h3 class="product-name">Two products.<br /><em style="font-style:italic; color:var(--gold);">Zero compromises.</em></h3>
-        <p class="product-desc">Built for Muslim athletes who refuse to choose between their deen and their performance. No shortcuts. No secrets. Just results you can verify yourself.</p>
+        <h3 class="product-name">Two products. <em style="font-style:italic; color:var(--gold);">Zero compromises.</em></h3>
         <div class="product-flavours">
-          <span class="flavour-tag">Waitlist Only</span>
+          <span class="flavour-tag">Launching 2026</span>
         </div>
       </div>
     </div>
@@ -576,7 +520,6 @@
   <!-- PILLARS -->
   <section class="pillars">
     <div class="pillars-heading">
-      <span></span>
       Why Noor Labs is different.
     </div>
     <div class="pillars-grid">
@@ -587,13 +530,13 @@
       </div>
       <div class="pillar">
         <p class="pillar-number">02 —</p>
-        <h3 class="pillar-title">Third Party Tested</h3>
-        <p class="pillar-desc">Every batch tested by an independent lab. Scan the QR code on your pouch and see the results yourself. What's on the label is in the product.</p>
+        <h3 class="pillar-title">Made for Movement</h3>
+        <p class="pillar-desc">Sports nutrition that fits real training—fuel, recovery, and focus built around how you actually move, lift, and recover.</p>
       </div>
       <div class="pillar">
         <p class="pillar-number">03 —</p>
-        <h3 class="pillar-title">QR Verified Transparency</h3>
-        <p class="pillar-desc">Every pouch has a QR code linking directly to live lab results. No secrets. No shortcuts. Just proof you can verify yourself.</p>
+        <h3 class="pillar-title">Straightforward &amp; True</h3>
+        <p class="pillar-desc">Clear information and honest formulations—no vague blends, no mystery doses. A standard you can feel good about.</p>
       </div>
     </div>
   </section>
@@ -617,20 +560,36 @@
     </div>
   </footer>
 
+  <iframe name="mailchimpHiddenFrame" id="mailchimpHiddenFrame" title="Mailchimp signup" style="display:none;width:0;height:0;border:0"></iframe>
   <script>
     function handleSubmit(event) {
+      event.preventDefault();
       const emailInput = document.getElementById('emailInput');
       const email = emailInput.value.trim();
 
       if (!email || !email.includes('@')) {
-        event.preventDefault();
         emailInput.style.borderColor = '#B8943F';
         emailInput.focus();
         return false;
       }
 
       emailInput.style.borderColor = 'transparent';
-      return true;
+      const form = document.getElementById('waitlistForm');
+      form.target = 'mailchimpHiddenFrame';
+      form.submit();
+
+      form.style.display = 'none';
+      const note = document.querySelector('.waitlist-note');
+      if (note) note.style.display = 'none';
+      const successMsg = document.getElementById('successMsg');
+      successMsg.textContent = "You're on the list. 🖤";
+      successMsg.style.display = 'block';
+
+      setTimeout(function () {
+        window.location.href = 'https://www.noorlaboratory.ca';
+      }, 3000);
+
+      return false;
     }
   </script>
 </body>
