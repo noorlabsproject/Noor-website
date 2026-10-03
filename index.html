@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Noor Labs — Halal. Honest. Performance.</title>
-  <meta name="description" content="Noor Labs — the first halal certified sports nutrition brand. Batch 01, halal certified by ISNA Canada. Join the waitlist." />
-  <meta name="theme-color" content="#1A1A1A" />
+  <title>Noor Labs — The Standard.</title>
+  <meta name="description" content="Noor Labs — halal certified sports nutrition. Creatine monohydrate gummies, certified by ISNA Canada. Join the waitlist." />
+  <meta name="theme-color" content="#F5F5F0" />
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png" />
@@ -14,14 +14,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     /* ============================================================
-       NOOR LABS — BRAND SYSTEM
-       Ground      #1A1A1A  matte black (primary)
-       Ground 2    #F5F5F0  off-white (contrast sections)
-       Accent      #C9A84C  gold — thin rules, buttons, small marks only
-       Warm        #C9A96E  warm neutral, sparingly
-       Type        Cormorant Garamond / Bebas Neue / DM Mono
-                   max two faces per section
-       Mobile-first: base styles are small-screen, min-width queries scale up.
+       NOOR LABS — BRAND SYSTEM (light)
+       Ground      #F5F5F0  cream — every section ground, no exceptions
+       Ink         #1A1A1A  text, and small black elements only
+                            (ticker bar, buttons, footer)
+       Accent      #C9A84C  gold — thin rules, seals, primary button
+       Type        Cormorant Garamond (display) / Bebas Neue (caps)
+                   / DM Mono (fine print)
+       Mobile-first: base styles are small-screen; min-width queries
+       scale up, and the pinned scroll story is additive on top.
        ============================================================ */
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,24 +30,24 @@
     :root {
       --ink: #1A1A1A;
       --bone: #F5F5F0;
+      --paper: #FFFFFF;
       --gold: #C9A84C;
-      --warm: #C9A96E;
       --ink-muted: rgba(26, 26, 26, 0.56);
-      --bone-muted: rgba(245, 245, 240, 0.56);
-      --hair-on-dark: rgba(245, 245, 240, 0.14);
-      --hair-on-light: rgba(26, 26, 26, 0.14);
+      --ink-faint: rgba(26, 26, 26, 0.38);
+      --hair: rgba(26, 26, 26, 0.14);
       --serif: 'Cormorant Garamond', Georgia, serif;
       --display: 'Bebas Neue', 'Arial Narrow', sans-serif;
       --mono: 'DM Mono', ui-monospace, monospace;
       --gutter: 24px;
+      --nav-h: 60px;
       color-scheme: light only;
     }
 
     html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
     body {
-      background: var(--ink);
-      color: var(--bone);
+      background: var(--bone);
+      color: var(--ink);
       font-family: var(--mono);
       font-weight: 300;
       -webkit-font-smoothing: antialiased;
@@ -55,22 +56,36 @@
 
     /* The palette is fixed by brand, not by viewer preference. */
     @media (prefers-color-scheme: dark) {
-      html, body { background: #1A1A1A; color: #F5F5F0; }
+      html, body { background: #F5F5F0; color: #1A1A1A; }
     }
 
     [hidden] { display: none !important; }
 
     ::selection { background: var(--gold); color: var(--ink); }
 
-    :focus-visible { outline: 1px solid var(--gold); outline-offset: 3px; }
+    :focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
+
+    img { max-width: 100%; display: block; }
+
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+    }
+
+    /* Cormorant defaults to oldstyle figures, which turns "2026" into
+       something lumpy. Force lining figures wherever the serif has numerals. */
+    .hero-heading, .chapter-line, .manifesto-line, .receipts-heading,
+    .receipt-title, .waitlist-heading, .success-heading,
+    .lockup-noor, .lockup-labs {
+      font-variant-numeric: lining-nums;
+      font-feature-settings: "lnum" 1;
+    }
 
     /* ---------- SHARED PRIMITIVES ---------- */
 
-    .section { padding: 72px var(--gutter); }
+    .section { padding: 88px var(--gutter); }
 
-    .ground-light { background: var(--bone); color: var(--ink); }
-
-    /* Eyebrow label — Bebas, used where a section carries no mono body copy. */
     .eyebrow {
       font-family: var(--display);
       font-size: 13px;
@@ -78,26 +93,6 @@
       letter-spacing: 0.26em;
       text-transform: uppercase;
       color: var(--gold);
-    }
-
-    /* Eyebrow label — DM Mono, for sections whose body copy is already mono. */
-    .eyebrow-mono {
-      font-family: var(--mono);
-      font-size: 9px;
-      font-weight: 400;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    /* Cormorant defaults to oldstyle figures, which turns "01" into "oi".
-       Force lining figures everywhere the serif carries numerals. */
-    .hero-heading, .waitlist-heading, .success-heading, .mission-text,
-    .product-name, .product-spec, .product-body,
-    .thesis-word, .thesis-counter,
-    .pillars-heading, .pillar-title, .lockup-noor, .lockup-labs {
-      font-variant-numeric: lining-nums;
-      font-feature-settings: "lnum" 1;
     }
 
     .rule-gold {
@@ -119,14 +114,14 @@
       text-align: center;
       text-decoration: none;
       white-space: nowrap;
-      color: var(--bone);
+      color: var(--ink);
     }
 
     .lockup-noor {
       display: block;
       font-family: var(--serif);
       font-weight: 300;
-      font-size: 23px;
+      font-size: 20px;
       line-height: 1;
       letter-spacing: 0.3em;
       margin-right: -0.3em;
@@ -138,19 +133,19 @@
       width: 100%;
       height: 1px;
       background: var(--gold);
-      margin: 6px 0 5px;
+      margin: 5px 0 4px;
     }
 
     .lockup-labs {
       display: block;
       font-family: var(--serif);
       font-weight: 400;
-      font-size: 9px;
+      font-size: 8px;
       line-height: 1;
       letter-spacing: 0.44em;
       margin-right: -0.44em;
       text-transform: uppercase;
-      color: var(--bone);
+      color: var(--ink);
     }
 
     /* ---------- NAV ---------- */
@@ -159,97 +154,296 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      padding: 16px var(--gutter);
+      padding: 14px var(--gutter);
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 16px;
-      background: rgba(26, 26, 26, 0.9);
+      background: rgba(245, 245, 240, 0.88);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--hair-on-dark);
+      border-bottom: 1px solid var(--hair);
     }
 
-    .nav-tag {
-      font-family: var(--mono);
-      font-size: 8px;
+    .nav-cta {
+      font-family: var(--display);
+      font-size: 12px;
+      line-height: 1;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--bone-muted);
-      text-align: right;
+      color: var(--ink);
+      text-decoration: none;
+      padding-bottom: 3px;
+      border-bottom: 1px solid var(--gold);
+      transition: color 0.2s ease;
     }
 
+    .nav-cta:hover { color: var(--gold); }
+
     /* ---------- HERO ----------
-       Cormorant + DM Mono. Flat matte ground, no imagery. */
+       Full-viewport cream. Headline, subline, scroll cue. Nothing else. */
 
     .hero {
       min-height: 100svh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 112px var(--gutter) 88px;
+      align-items: center;
+      text-align: center;
+      padding: calc(var(--nav-h) + 40px) var(--gutter) 96px;
+      position: relative;
     }
 
     .hero-heading {
       font-family: var(--serif);
-      font-size: clamp(42px, 11vw, 112px);
       font-weight: 300;
-      line-height: 1.04;
-      letter-spacing: 0.015em;
-      max-width: 15ch;
-      opacity: 0;
-      animation: fadeUp 0.9s ease forwards 0.25s;
-    }
-
-    .hero-heading em {
-      font-style: italic;
-      color: var(--warm);
-    }
-
-    .hero-rule {
-      margin: 28px 0 24px;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.45s;
+      /* "STANDARD." is one unbreakable word, so the ceiling here is set by
+         the longest word fitting the narrowest phone, not by taste. */
+      font-size: clamp(40px, 14.5vw, 230px);
+      line-height: 0.92;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      max-width: 100%;
     }
 
     .hero-sub {
-      font-family: var(--mono);
-      font-size: 12px;
-      font-weight: 300;
-      letter-spacing: 0.06em;
-      line-height: 2;
-      color: var(--bone-muted);
-      max-width: 44ch;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.55s;
+      font-family: var(--display);
+      font-size: clamp(12px, 3.2vw, 17px);
+      line-height: 1.3;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-top: 26px;
+      margin-right: -0.3em;
     }
 
-    /* ---------- WAITLIST ----------
-       Cormorant + DM Mono (DM Mono carries the form labels). */
+    .scroll-cue {
+      position: absolute;
+      left: 50%;
+      bottom: 30px;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink-faint);
+    }
+
+    .scroll-cue svg { display: block; animation: cue 2.2s ease-in-out infinite; }
+
+    @keyframes cue {
+      0%, 100% { transform: translateY(0); opacity: 0.5; }
+      50%      { transform: translateY(5px); opacity: 1; }
+    }
+
+    /* ---------- TICKER ----------
+       The one full-width black element above the fold. Thin bar only. */
+
+    .ticker {
+      background: var(--ink);
+      overflow: hidden;
+      padding: 11px 0;
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: ticker 38s linear infinite;
+    }
+
+    .ticker-group {
+      display: flex;
+      flex: none;
+      font-family: var(--display);
+      font-size: 13px;
+      line-height: 1;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    .ticker-group span { padding-right: 0; }
+
+    @keyframes ticker { to { transform: translateX(-50%); } }
+
+    /* ---------- SCROLL STORY ----------
+       Base (mobile / reduced motion): plain stacked sections, images inline.
+       The pinned behaviour is layered on only where it can work well. */
+
+    .story { padding: 72px var(--gutter); }
+
+    .story-visual-inner {
+      max-width: 340px;
+      margin: 0 auto 52px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .pouch { position: relative; }
+
+    .pouch-face {
+      width: 100%;
+      height: auto;
+      background: #EDEDE6;
+    }
+
+    .chapters { list-style: none; display: grid; gap: 56px; }
+
+    .chapter-line {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(30px, 7.4vw, 44px);
+      line-height: 1.1;
+      letter-spacing: 0.01em;
+      margin-top: 14px;
+      max-width: 18ch;
+    }
+
+    .chapter-spec {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-top: 18px;
+    }
+
+    /* ---------- MANIFESTO ---------- */
+
+    .manifesto {
+      padding: 104px var(--gutter);
+      text-align: center;
+      border-top: 1px solid var(--hair);
+    }
+
+    .manifesto-inner { max-width: 780px; margin: 0 auto; display: grid; gap: 34px; }
+
+    .manifesto-line {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(22px, 5.4vw, 38px);
+      line-height: 1.32;
+      letter-spacing: 0.005em;
+    }
+
+    .manifesto-line--mark { color: var(--gold); }
+
+    /* ---------- RECEIPTS ---------- */
+
+    .receipts {
+      padding: 96px var(--gutter);
+      border-top: 1px solid var(--hair);
+    }
+
+    .receipts-inner { max-width: 1040px; margin: 0 auto; }
+
+    .receipts-heading {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(32px, 8vw, 58px);
+      line-height: 1.06;
+      letter-spacing: 0.01em;
+      margin-top: 16px;
+    }
+
+    /* auto-fit keeps this honest when a third or fourth card is added. */
+    .receipts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .receipt {
+      background: var(--paper);
+      border: 1px solid var(--hair);
+      border-radius: 2px;
+      box-shadow: 0 1px 2px rgba(26, 26, 26, 0.04), 0 8px 24px rgba(26, 26, 26, 0.06);
+      padding: 32px 26px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    /* Gold seal motif — concentric ring with a centre dot, drawn in CSS. */
+    .seal {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
+      display: grid;
+      place-items: center;
+      flex: none;
+    }
+
+    .seal::after {
+      content: "";
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
+      display: block;
+      position: relative;
+    }
+
+    .seal-dot {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .receipt-title {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 23px;
+      line-height: 1.22;
+      letter-spacing: 0.01em;
+    }
+
+    .receipt-meta {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 1.7;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--hair);
+    }
+
+    /* ---------- WAITLIST ---------- */
 
     .waitlist {
-      border-top: 1px solid var(--gold);
-      padding: 64px var(--gutter) 72px;
+      padding: 104px var(--gutter) 112px;
+      border-top: 1px solid var(--hair);
     }
 
-    .waitlist-inner { max-width: 560px; }
+    .waitlist-inner { max-width: 620px; margin: 0 auto; }
 
     .waitlist-heading {
       font-family: var(--serif);
-      font-size: clamp(34px, 9vw, 56px);
       font-weight: 300;
-      line-height: 1.1;
+      font-size: clamp(34px, 8.6vw, 62px);
+      line-height: 1.04;
       letter-spacing: 0.01em;
-      margin: 18px 0 20px;
+      margin-top: 16px;
     }
 
     .waitlist-body {
       font-family: var(--mono);
-      font-size: 12px;
-      line-height: 2;
-      letter-spacing: 0.05em;
-      color: var(--bone-muted);
-      margin-bottom: 32px;
+      font-size: 13px;
+      line-height: 1.8;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+      margin-top: 20px;
     }
 
     .waitlist-label {
@@ -259,348 +453,236 @@
       font-weight: 400;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--bone-muted);
-      margin-bottom: 10px;
+      color: var(--ink-faint);
+      margin: 40px 0 10px;
     }
 
     .waitlist-form { display: flex; flex-direction: column; gap: 10px; }
 
     .waitlist-form input {
-      width: 100%;
-      padding: 15px 16px;
-      font-family: var(--mono);
-      font-size: 13px;
-      font-weight: 300;
-      letter-spacing: 0.05em;
-      color: var(--bone);
-      background: transparent;
-      border: 1px solid var(--hair-on-dark);
+      flex: 1;
+      min-width: 0;
+      background: var(--paper);
+      border: 1px solid var(--hair);
       border-radius: 0;
-      outline: none;
-      transition: border-color 0.2s ease;
+      padding: 16px 18px;
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: var(--ink);
       -webkit-appearance: none;
       appearance: none;
     }
 
-    .waitlist-form input::placeholder { color: rgba(245, 245, 240, 0.34); }
-    .waitlist-form input:focus { border-color: var(--gold); }
-    .waitlist-form input.is-invalid { border-color: var(--gold); }
+    .waitlist-form input::placeholder { color: var(--ink-faint); }
+    .waitlist-form input:focus { border-color: var(--ink); outline: none; }
+    .waitlist-form input.is-invalid { border-color: var(--gold); background: #FFFDF6; }
 
-    /* Primary action — gold field, black text. */
     .btn-gold {
-      display: block;
-      width: 100%;
-      padding: 15px 24px;
-      font-family: var(--mono);
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      text-align: center;
-      text-decoration: none;
-      color: var(--ink);
       background: var(--gold);
+      color: var(--ink);
       border: 1px solid var(--gold);
       border-radius: 0;
-      cursor: pointer;
-      transition: opacity 0.2s ease;
-      -webkit-appearance: none;
-      appearance: none;
-    }
-
-    .btn-gold:hover { opacity: 0.85; }
-
-    /* Secondary action — gold hairline only, no gold field. */
-    .btn-outline {
-      display: block;
-      padding: 14px 22px;
-      font-family: var(--mono);
-      font-size: 10px;
-      font-weight: 400;
+      padding: 16px 28px;
+      font-family: var(--display);
+      font-size: 14px;
+      line-height: 1;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      text-align: center;
-      text-decoration: none;
-      color: var(--gold);
-      background: transparent;
-      border: 1px solid var(--gold);
-      transition: color 0.2s ease, background 0.2s ease;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s ease, color 0.2s ease;
     }
 
-    .btn-outline:hover { background: var(--gold); color: var(--ink); }
+    .btn-gold:hover { background: var(--ink); color: var(--bone); border-color: var(--ink); }
 
     .waitlist-note {
       font-family: var(--mono);
-      font-size: 9px;
+      font-size: 10px;
+      line-height: 1.7;
       letter-spacing: 0.1em;
-      line-height: 1.9;
-      color: rgba(245, 245, 240, 0.38);
-      margin-top: 14px;
+      color: var(--ink-faint);
+      margin-top: 16px;
     }
 
-    /* Post-signup thank-you state */
     .waitlist-success { max-width: 560px; }
 
     .success-heading {
       font-family: var(--serif);
-      font-size: clamp(34px, 9vw, 56px);
       font-weight: 300;
-      line-height: 1.1;
+      font-size: clamp(34px, 8.6vw, 62px);
+      line-height: 1.04;
       letter-spacing: 0.01em;
-      margin-bottom: 18px;
     }
 
     .success-body {
       font-family: var(--mono);
-      font-size: 12px;
-      line-height: 2;
-      letter-spacing: 0.05em;
-      color: var(--bone-muted);
-      margin-bottom: 28px;
-    }
-
-    .success-actions { display: flex; flex-direction: column; gap: 10px; }
-
-    /* ---------- MISSION ----------
-       Cormorant + Bebas. */
-
-    .mission { padding: 72px var(--gutter); }
-
-    .mission-text {
-      font-family: var(--serif);
-      font-size: clamp(26px, 6.4vw, 42px);
-      font-weight: 300;
-      line-height: 1.4;
-      letter-spacing: 0.01em;
-      margin-top: 22px;
-      max-width: 30ch;
-    }
-
-    .mission-text strong { font-weight: 400; color: var(--warm); }
-
-    /* ---------- BATCH 01 / PRODUCT ----------
-       Cormorant + Bebas. The spec line is Bebas because it is a run of
-       counts and labels; the body sits in Cormorant so the section keeps
-       to two faces alongside the required Bebas eyebrow. */
-
-    .batch { padding: 72px var(--gutter); }
-
-    .product {
-      max-width: 620px;
-      border-top: 1px solid var(--gold);
-      padding-top: 30px;
-    }
-
-    .product-name {
-      font-family: var(--serif);
-      font-size: clamp(34px, 9vw, 64px);
-      font-weight: 300;
-      line-height: 1.08;
-      letter-spacing: 0.01em;
-      margin: 18px 0 20px;
-    }
-
-    .product-spec {
-      font-family: var(--display);
-      font-size: 15px;
-      line-height: 1.5;
-      letter-spacing: 0.17em;
-      color: var(--warm);
-      margin-bottom: 26px;
-    }
-
-    .product-spec .nw { white-space: nowrap; }
-
-    .product-body {
-      font-family: var(--serif);
-      font-size: clamp(18px, 4.6vw, 22px);
-      font-weight: 300;
-      font-style: italic;
-      line-height: 1.7;
-      letter-spacing: 0.01em;
-      color: var(--bone-muted);
-      max-width: 30ch;
-    }
-
-    /* ---------- THESIS ----------
-       The brand's whole argument. Off-white ground, Cormorant + Bebas. */
-
-    .thesis {
-      padding: 88px var(--gutter);
-      text-align: center;
-    }
-
-    .thesis .eyebrow { color: #8C7430; }
-
-    .thesis-word {
-      font-family: var(--serif);
-      font-size: clamp(56px, 20vw, 190px);
-      font-weight: 300;
-      line-height: 0.95;
-      letter-spacing: 0.015em;
-      margin: 20px 0 0;
-    }
-
-    .thesis .rule-gold { margin: 28px auto; width: 120px; }
-
-    .thesis-counter {
-      font-family: var(--serif);
-      font-size: clamp(20px, 5.4vw, 34px);
-      font-weight: 300;
-      font-style: italic;
-      line-height: 1.5;
-      color: var(--ink-muted);
-      max-width: 24ch;
-      margin: 0 auto;
-    }
-
-    /* ---------- PILLARS ----------
-       Cormorant + DM Mono. */
-
-    .pillars { padding: 72px var(--gutter) 80px; }
-
-    .pillars-heading {
-      font-family: var(--serif);
-      font-size: clamp(30px, 8vw, 54px);
-      font-weight: 300;
-      line-height: 1.14;
-      letter-spacing: 0.01em;
-      margin: 16px 0 48px;
-      max-width: 22ch;
-    }
-
-    .pillars-grid { display: grid; grid-template-columns: 1fr; gap: 0; }
-
-    .pillar { padding: 30px 0; border-top: 1px solid var(--gold); }
-
-    .pillar-number {
-      font-family: var(--mono);
-      font-size: 9px;
-      font-weight: 400;
-      letter-spacing: 0.3em;
-      color: var(--gold);
-      margin-bottom: 18px;
-    }
-
-    .pillar-title {
-      font-family: var(--serif);
-      font-size: 27px;
-      font-weight: 400;
-      line-height: 1.2;
-      letter-spacing: 0.02em;
-      margin-bottom: 14px;
-    }
-
-    .pillar-desc {
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 300;
+      font-size: 13px;
+      line-height: 1.8;
       letter-spacing: 0.04em;
-      line-height: 2;
-      color: var(--bone-muted);
+      color: var(--ink-muted);
+      margin-top: 18px;
     }
 
-    /* ---------- FOOTER ----------
-       Cormorant lockup + DM Mono. */
+    .success-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 30px; }
+
+    .btn-outline {
+      display: block;
+      text-align: center;
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--hair);
+      padding: 15px 22px;
+      font-family: var(--display);
+      font-size: 13px;
+      line-height: 1;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ---------- FOOTER ---------- */
 
     footer {
-      border-top: 1px solid var(--gold);
-      padding: 56px var(--gutter) 40px;
+      background: var(--ink);
+      color: var(--bone);
+      padding: 56px var(--gutter);
       display: grid;
-      grid-template-columns: 1fr;
       gap: 36px;
     }
 
+    footer .lockup, footer .lockup-labs { color: var(--bone); }
+
     .footer-address {
       font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      line-height: 2.1;
-      color: var(--bone-muted);
+      font-size: 11px;
+      line-height: 2;
+      letter-spacing: 0.08em;
+      color: rgba(245, 245, 240, 0.56);
       margin-top: 20px;
     }
 
-    .footer-address a { color: var(--gold); text-decoration: none; }
-    .footer-address a:hover { color: var(--bone); }
+    .footer-address a { color: rgba(245, 245, 240, 0.56); text-decoration: none; border-bottom: 1px solid rgba(245, 245, 240, 0.24); }
+    .footer-address a:hover { color: var(--gold); border-color: var(--gold); }
 
-    .footer-social { display: flex; gap: 22px; margin-bottom: 20px; }
+    .footer-social { display: flex; gap: 22px; }
 
     .footer-social a {
-      font-family: var(--mono);
-      font-size: 10px;
+      font-family: var(--display);
+      font-size: 13px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--bone);
       text-decoration: none;
-      transition: color 0.2s;
+      transition: color 0.2s ease;
     }
 
-    .footer-social a:hover { color: var(--bone); }
+    .footer-social a:hover { color: var(--gold); }
 
     .footer-copy {
       font-family: var(--mono);
       font-size: 9px;
-      letter-spacing: 0.1em;
-      line-height: 1.9;
-      color: rgba(245, 245, 240, 0.3);
-    }
-
-    /* ---------- MOTION ---------- */
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-delay: 0ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-      .hero-heading, .hero-rule, .hero-sub { opacity: 1; }
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(245, 245, 240, 0.38);
+      margin-top: 18px;
     }
 
     /* ---------- SCALE UP ---------- */
 
-    @media (min-width: 600px) {
+    @media (min-width: 680px) {
+      :root { --gutter: 48px; }
+
       .waitlist-form { flex-direction: row; gap: 0; }
       .waitlist-form input { border-right: 0; }
       .waitlist-form .btn-gold { width: auto; white-space: nowrap; }
       .success-actions { flex-direction: row; }
       .success-actions .btn-outline { flex: 1; }
-    }
 
-    @media (min-width: 900px) {
-      :root { --gutter: 48px; }
-      nav { padding: 22px var(--gutter); }
-      .lockup-noor { font-size: 26px; }
-      .nav-tag { font-size: 9px; }
-      .hero { padding: 152px var(--gutter) 120px; }
-      .waitlist { padding: 96px var(--gutter) 104px; }
-      .mission {
-        padding: 112px var(--gutter);
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        gap: 64px;
-        align-items: start;
-      }
-      .mission-text { margin-top: 0; }
-      .batch { padding: 104px var(--gutter); }
-      .thesis { padding: 140px var(--gutter); }
-      .pillars { padding: 112px var(--gutter) 120px; }
-      .pillars-grid { grid-template-columns: repeat(3, 1fr); gap: 2px; }
-      .pillar { padding: 34px 32px 40px; }
-      .pillar:first-child { padding-left: 0; }
-      footer {
-        padding: 72px var(--gutter) 48px;
-        grid-template-columns: 1fr 1fr;
-        align-items: end;
-      }
+      .ticker-group { font-size: 15px; }
+
+      footer { grid-template-columns: 1fr 1fr; align-items: end; }
       .footer-right { text-align: right; }
       .footer-social { justify-content: flex-end; }
+    }
+
+    /* ---------- PINNED SCROLL STORY ----------
+       Only above 900px AND only when motion is welcome. Everything below
+       this breakpoint keeps the plain stacked layout defined above, so the
+       fallback is the default rather than an afterthought. */
+
+    @media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+      .story { padding: 0 var(--gutter); }
+
+      .story-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        max-width: 1180px;
+        margin: 0 auto;
+        align-items: start;
+      }
+
+      .story-visual {
+        position: sticky;
+        top: 0;
+        height: 100svh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .story-visual-inner {
+        max-width: 420px;
+        width: 100%;
+        margin: 0;
+        display: block;
+        perspective: 1400px;
+      }
+
+      /* Front sizes the box; back is absolutely stacked and pre-rotated so
+         that a 180deg turn of the parent presents it the right way round. */
+      .pouch {
+        position: relative;
+        transform-style: preserve-3d;
+        transform: rotateY(0deg);
+        will-change: transform;
+      }
+
+      .pouch-face { backface-visibility: hidden; }
+
+      .pouch-face--back {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        object-fit: cover;
+        transform: rotateY(180deg);
+      }
+
+      .chapters { display: block; }
+
+      .chapter {
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        opacity: 0.22;
+        transition: opacity 0.5s ease;
+      }
+
+      .chapter.is-active { opacity: 1; }
+
+      .chapter-line { font-size: clamp(36px, 3.4vw, 54px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .ticker-track { animation: none; }
+      .scroll-cue svg { animation: none; }
     }
   </style>
 </head>
@@ -613,18 +695,101 @@
       <span class="lockup-rule" aria-hidden="true"></span>
       <span class="lockup-labs">Labs</span>
     </a>
-    <span class="nav-tag">Halal. Honest. Performance.</span>
+    <a class="nav-cta" href="#waitlist">Get first access</a>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <h1 class="hero-heading">
-      The first halal certified <em>sports nutrition</em> brand.
-    </h1>
-    <span class="rule-gold hero-rule" aria-hidden="true"></span>
-    <p class="hero-sub">
-      Built for Muslim athletes who deserve supplements they can trust. Halal certified. No compromises.
-    </p>
+    <h1 class="hero-heading">The Standard.</h1>
+    <p class="hero-sub">Halal certified sports nutrition</p>
+    <span class="scroll-cue" aria-hidden="true">
+      <svg width="13" height="26" viewBox="0 0 13 26" fill="none" stroke="currentColor" stroke-width="1">
+        <path d="M6.5 0v24M1 18.5l5.5 6 5.5-6" />
+      </svg>
+    </span>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <div class="ticker-group"><span>HALAL CERTIFIED&nbsp; ·&nbsp; ISNA CANADA&nbsp; ·&nbsp; CREATINE MONOHYDRATE&nbsp; ·&nbsp; PIÑA COLADA&nbsp; ·&nbsp; 6G PER SERVING&nbsp; ·&nbsp; </span></div>
+      <div class="ticker-group"><span>HALAL CERTIFIED&nbsp; ·&nbsp; ISNA CANADA&nbsp; ·&nbsp; CREATINE MONOHYDRATE&nbsp; ·&nbsp; PIÑA COLADA&nbsp; ·&nbsp; 6G PER SERVING&nbsp; ·&nbsp; </span></div>
+    </div>
+  </div>
+
+  <!-- PRODUCT SCROLL STORY -->
+  <section class="story" id="story" aria-labelledby="story-heading">
+    <h2 class="visually-hidden" id="story-heading">The product</h2>
+    <div class="story-grid">
+
+      <div class="story-visual">
+        <div class="story-visual-inner">
+          <div class="pouch" id="pouch">
+            <img class="pouch-face pouch-face--front" src="images/pouch-front.jpg"
+                 alt="Noor Labs creatine monohydrate gummies pouch, front of pack"
+                 width="1000" height="1250" decoding="async" />
+            <img class="pouch-face pouch-face--back" src="images/pouch-back.jpg"
+                 alt="Noor Labs creatine monohydrate gummies pouch, back of pack with supplement facts"
+                 width="1000" height="1250" decoding="async" loading="lazy" />
+          </div>
+        </div>
+      </div>
+
+      <div class="chapters">
+        <article class="chapter">
+          <p class="eyebrow">The Standard</p>
+          <h3 class="chapter-line">Certified. Not halal suitable. Not halal friendly.</h3>
+        </article>
+
+        <article class="chapter">
+          <h3 class="chapter-line">Creatine Monohydrate Gummies.</h3>
+          <p class="chapter-spec">Piña Colada · 90 count · 30-day supply</p>
+        </article>
+
+        <article class="chapter">
+          <p class="eyebrow">Honest Formulation</p>
+          <h3 class="chapter-line">6g per serving. No mystery doses.</h3>
+        </article>
+
+        <article class="chapter">
+          <p class="eyebrow">On The Label</p>
+          <h3 class="chapter-line">Sugar free. Gluten free. Vegan.</h3>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MANIFESTO -->
+  <section class="manifesto">
+    <div class="manifesto-inner">
+      <p class="manifesto-line">the halal supplement market got left behind.</p>
+      <p class="manifesto-line">&ldquo;halal friendly&rdquo; isn&rsquo;t a certification. it&rsquo;s a shrug.</p>
+      <p class="manifesto-line">we got certified. every product. every batch.</p>
+      <p class="manifesto-line manifesto-line--mark">noor labs. built on receipts.</p>
+    </div>
+  </section>
+
+  <!-- RECEIPTS -->
+  <section class="receipts" aria-labelledby="receipts-heading">
+    <div class="receipts-inner">
+      <p class="eyebrow">The Paperwork</p>
+      <h2 class="receipts-heading" id="receipts-heading">No claims. Receipts.</h2>
+
+      <div class="receipts-grid">
+        <article class="receipt">
+          <span class="seal" aria-hidden="true"><i class="seal-dot"></i></span>
+          <h3 class="receipt-title">Halal Certified</h3>
+          <p class="receipt-meta">ISNA Canada Halal Certificate · EST. 1988</p>
+        </article>
+
+        <article class="receipt">
+          <span class="seal" aria-hidden="true"><i class="seal-dot"></i></span>
+          <h3 class="receipt-title">Third-Party Audited Facility</h3>
+          <p class="receipt-meta">NSF/ANSI 455-2 Certified Facility</p>
+        </article>
+      </div>
+    </div>
   </section>
 
   <!-- WAITLIST -->
@@ -632,10 +797,10 @@
     <div class="waitlist-inner">
 
       <div id="waitlistEntry">
-        <p class="eyebrow-mono">Join the waitlist</p>
-        <h2 class="waitlist-heading">Batch 01 is almost here.</h2>
+        <p class="eyebrow">Join the waitlist</p>
+        <h2 class="waitlist-heading">Dropping fall 2026.</h2>
         <p class="waitlist-body">
-          1,000 units. Halal certified by ISNA Canada. When it drops, the waitlist hears first.
+          The waitlist hears first.
         </p>
 
         <label class="waitlist-label" for="emailInput">Email address</label>
@@ -649,13 +814,13 @@
           <input type="email" id="emailInput" name="EMAIL" placeholder="your@email.com" autocomplete="email" required />
           <button type="submit" class="btn-gold">Get first access</button>
         </form>
-        <p class="waitlist-note">Be first to know when we launch. No spam, ever.</p>
+        <p class="waitlist-note">No spam, ever.</p>
       </div>
 
       <div class="waitlist-success" id="successMsg" role="status" aria-live="polite" hidden>
         <h2 class="success-heading">You're in.</h2>
         <p class="success-body">
-          Batch 01 is very limited — the waitlist gets the link before anyone else. While you wait, Noor's making content:
+          The waitlist gets the link before anyone else. While you wait, Noor's making content:
         </p>
         <div class="success-actions">
           <a class="btn-outline" href="https://www.tiktok.com/@coachnoor.ai" target="_blank" rel="noopener noreferrer">TikTok @coachnoor.ai</a>
@@ -663,55 +828,6 @@
         </div>
       </div>
 
-    </div>
-  </section>
-
-  <!-- MISSION -->
-  <section class="mission">
-    <p class="eyebrow">Our mission</p>
-    <p class="mission-text">
-      The halal supplement market has been left behind. <strong>Noor Labs exists to change that</strong> — starting with sports performance, built on transparency, and verified every single batch.
-    </p>
-  </section>
-
-  <!-- BATCH 01 -->
-  <section class="batch">
-    <div class="product">
-      <p class="eyebrow">Batch 01</p>
-      <h2 class="product-name">Creatine Monohydrate Gummies.</h2>
-      <p class="product-spec"><span class="nw">Piña Colada</span> · <span class="nw">90 count</span> · <span class="nw">30-day supply</span></p>
-      <p class="product-body">1,000 units. Halal certified by ISNA Canada. Launching Fall 2026.</p>
-    </div>
-  </section>
-
-  <!-- THESIS -->
-  <section class="thesis ground-light">
-    <p class="eyebrow">The standard</p>
-    <p class="thesis-word">Certified.</p>
-    <span class="rule-gold" aria-hidden="true"></span>
-    <p class="thesis-counter">Not halal suitable. Not halal friendly.</p>
-  </section>
-
-  <!-- PILLARS -->
-  <section class="pillars">
-    <p class="eyebrow-mono">Why we're different</p>
-    <h2 class="pillars-heading">Why Noor Labs is different.</h2>
-    <div class="pillars-grid">
-      <div class="pillar">
-        <p class="pillar-number">01 —</p>
-        <h3 class="pillar-title">Halal Certified</h3>
-        <p class="pillar-desc">Certified by ISNA Canada. Every product, every batch, every time. We hold ourselves to the standard that matters.</p>
-      </div>
-      <div class="pillar">
-        <p class="pillar-number">02 —</p>
-        <h3 class="pillar-title">Made for Movement</h3>
-        <p class="pillar-desc">Sports nutrition built for real training—made around how you actually train, lift, and live.</p>
-      </div>
-      <div class="pillar">
-        <p class="pillar-number">03 —</p>
-        <h3 class="pillar-title">Straightforward &amp; True</h3>
-        <p class="pillar-desc">Clear information and honest formulations—no vague blends, no mystery doses. A standard you can feel good about.</p>
-      </div>
     </div>
   </section>
 
@@ -768,6 +884,72 @@
 
       return false;
     }
+  </script>
+
+  <script>
+    /* Scroll story: flip the pouch front-to-back across the section, and
+       light up the chapter nearest the middle of the viewport.
+       Runs only when the pinned layout is actually in play — the stacked
+       fallback needs no JS at all, so nothing here is load-bearing. */
+    (function () {
+      var pinned = window.matchMedia('(min-width: 900px) and (prefers-reduced-motion: no-preference)');
+      var story = document.getElementById('story');
+      var pouch = document.getElementById('pouch');
+      var chapters = Array.prototype.slice.call(document.querySelectorAll('.chapter'));
+      if (!story || !pouch || !chapters.length) return;
+
+      var ticking = false;
+
+      function clear() {
+        pouch.style.transform = '';
+        chapters.forEach(function (c) { c.classList.remove('is-active'); });
+      }
+
+      function update() {
+        ticking = false;
+        if (!pinned.matches) return;
+
+        var rect = story.getBoundingClientRect();
+        var scrollable = rect.height - window.innerHeight;
+        if (scrollable <= 0) return;
+
+        var progress = Math.min(1, Math.max(0, -rect.top / scrollable));
+
+        // Hold the front face, turn through the middle, hold the back face —
+        // so the pouch reads as flat at rest instead of permanently askew.
+        var FLIP_START = 0.28, FLIP_END = 0.72;
+        var t = (progress - FLIP_START) / (FLIP_END - FLIP_START);
+        t = Math.min(1, Math.max(0, t));
+        t = t * t * (3 - 2 * t); // smoothstep
+        pouch.style.transform = 'rotateY(' + (t * 180) + 'deg)';
+
+        var mid = window.innerHeight / 2;
+        var best = null;
+        var bestDist = Infinity;
+        chapters.forEach(function (c) {
+          var r = c.getBoundingClientRect();
+          var dist = Math.abs(r.top + r.height / 2 - mid);
+          if (dist < bestDist) { bestDist = dist; best = c; }
+        });
+        chapters.forEach(function (c) { c.classList.toggle('is-active', c === best); });
+      }
+
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(update);
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+
+      // Dropping below the breakpoint must not strand a half-flipped pouch.
+      function onChange() { clear(); update(); }
+      if (pinned.addEventListener) pinned.addEventListener('change', onChange);
+      else if (pinned.addListener) pinned.addListener(onChange);
+
+      update();
+    })();
   </script>
 </body>
 </html>
